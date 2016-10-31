@@ -15,12 +15,13 @@
 #
 
 ## Source function library.
-#. /etc/rc.d/init.d/functions
 # Source LSB function library.
-if [ -r /lib/lsb/init-functions ]; then
-    . /lib/lsb/init-functions
+if [[ -r /lib/lsb/init-functions ]]; then
+  . /lib/lsb/init-functions
+elif [[ -r /etc/rc.d/init.d/functions ]]; then
+  . /etc/rc.d/init.d/functions
 else
-    exit 1
+  exit 1
 fi
 
 DISTRIB_ID=`lsb_release -i -s 2>/dev/null`
