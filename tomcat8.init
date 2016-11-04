@@ -105,6 +105,10 @@ function start() {
      log_failure_msg
      return
    fi
+   if [[ ! $(which java) ]]; then
+     log_failure_msg "Error: java not found: "
+     return
+   fi
    if [ -f "/var/lock/subsys/${NAME}" ]; then
         if [ -f "${CATALINA_PID}" ]; then
             read kpid < ${CATALINA_PID}
